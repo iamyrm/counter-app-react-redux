@@ -2,18 +2,27 @@ import { createStore } from "redux";
 
 const INITIAL_VALUE = {
   counter: 0,
+  privacy: false,
 };
 
 const counterReducer = (store = INITIAL_VALUE, action) => {
   let newStore = store;
   if (action.type === "INCREMENT") {
-    newStore = { counter: store.counter + 1 };
+    newStore = { ...store, counter: store.counter + 1 };
   } else if (action.type === "DECREMENT") {
-    newStore = { counter: store.counter - 1 };
+    newStore = { ...store, counter: store.counter - 1 };
   } else if (action.type === "ADDITION") {
-    newStore = { counter: store.counter + Number(action.payload.num) };
+    newStore = {
+      ...store,
+      counter: store.counter + Number(action.payload.num),
+    };
   } else if (action.type === "SUBTRACTION") {
-    newStore = { counter: store.counter - Number(action.payload.num) };
+    newStore = {
+      ...store,
+      counter: store.counter - Number(action.payload.num),
+    };
+  } else if (action.type === "PRIVACY") {
+    return { ...store, privacy: !store.privacy };
   }
   return newStore;
 };

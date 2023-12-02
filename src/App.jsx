@@ -4,8 +4,12 @@ import Header from "./components/Header";
 import DisplayCounter from "./components/DisplayCounter";
 import Wrapper from "./components/Wrapper";
 import Controls from "./components/Controls";
+import { useSelector } from "react-redux";
+import Privacy from "./components/Privacy";
 
 const App = () => {
+  const privacy = useSelector((store) => store.privacy);
+
   return (
     <>
       <div
@@ -15,8 +19,8 @@ const App = () => {
         <Wrapper>
           <Header />
           <div className="col-lg-6 mx-auto">
-            <DisplayCounter />
-            <Controls/>
+            {privacy ? <Privacy /> : <DisplayCounter />}
+            <Controls />
           </div>
         </Wrapper>
       </div>
